@@ -1,0 +1,22 @@
+{
+  "name": "tilenik",
+  "version": "0.0.1",
+  "description": "a geojson & cartoCSS tile renderer",
+  "main": "index.js",
+  "scripts": {
+    "test": "tests/render.js"
+  },
+  "author": "Chris Helm",
+  "dependencies": {
+    "carto": "~0.9.4",
+    "underscore": "~1.5.2"
+  },
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "mocha": "~1.13.0",
+    "grunt": "0.4.x",
+    "grunt-mocha-test": "*",
+    "grunt-contrib-jshint": "0.3.x",
+    "should": "~2.0.1"
+  }
+}
