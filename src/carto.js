@@ -98,9 +98,7 @@ var compile = function(style, callback) {
 
   var parser = new carto.Parser(parse_env);
 
-  //console.log(style, parser);
   var ruleset = parser.parse(style);
-  //console.log( ruleset);
   if(ruleset) {
       var shader = toCartoShader(ruleset);
       callback(shader);

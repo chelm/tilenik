@@ -10,9 +10,7 @@ Tilenik.prototype.render = function( canvas, geojson, css, callback ){
 
   this.carto.compile( css, function( shaderData ){
 
-    console.log(shaderData);
     var shader = new self.shader( shaderData );
-
     var projected = [];
 
     if ( geojson.features && geojson.features.length ){
