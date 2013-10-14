@@ -1,6 +1,6 @@
 {
   "name": "tilenik",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a geojson & cartoCSS tile renderer",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
   "author": "Chris Helm",
   "dependencies": {
     "carto": "~0.9.4",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "canvas": "~1.1.1"
   },
   "license": "BSD-2-Clause",
   "devDependencies": {

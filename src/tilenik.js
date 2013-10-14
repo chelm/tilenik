@@ -5,7 +5,7 @@ var Tilenik = function(){
   this.projector = require('./projector');
 };
 
-Tilenik.prototype.render = function( canvas, geojson, css, callback ){
+Tilenik.prototype.render = function( canvas, geojson, css, z, x, y, callback ){
   var self = this;
 
   this.carto.compile( css, function( shaderData ){
@@ -16,7 +16,7 @@ Tilenik.prototype.render = function( canvas, geojson, css, callback ){
     if ( geojson.features && geojson.features.length ){
       geojson.features.forEach(function(p, i){
         if(p.geometry) {
-          var converted = self.projector(p.geometry, 5, 5, 12);
+          var converted = self.projector(p.geometry, z, x, y);
           if(converted && converted.length !== 0) {
             projected.push({
               vertexBuffer: converted,
