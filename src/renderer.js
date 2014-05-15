@@ -2,7 +2,7 @@
 function Renderer() {
   var self = this;
   var primitive_render = this.primitive_render = {
-      'Point': function(ctx, coordinates, shader) {
+      'Point': function(ctx, coordinates) {
                 ctx.save();
                 var radius = 2; //shader.shader_src['point-radius']();
                 var p = coordinates;
@@ -71,8 +71,8 @@ Renderer.prototype.render = function( ctx, geometry, shader, callback ) {
             renderer(ctx, geo.vertexBuffer);
           }
       }
+      callback( ctx );
   }
-  callback( ctx );
 };
 
 module.exports = new Renderer();
