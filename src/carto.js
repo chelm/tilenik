@@ -16,9 +16,10 @@ carto.tree.Selector.prototype.toJS = function() {
   var opMap = {
     '=': '==='
   };
-  var zoom = "(" + self.zoom + " & (1 << ctx.zoom))";
+  var zoom = "(1 << ctx.zoom)";
+  //var zoom = "(" + self.zoom + " & (1 << ctx.zoom))";
   return [zoom].concat(
-    _.map(this.filters, function(filter) {
+    /*_.map(this.filters, function(filter) {
       var op = filter.op;
       if(op in opMap) {
         op = opMap[op];
@@ -30,7 +31,7 @@ carto.tree.Selector.prototype.toJS = function() {
 
       var attrs = "data";
       return attrs + "." + filter.key  + " " + op + " " + val;
-    })
+    })*/
   ).join(" && ");
 };
 
@@ -69,6 +70,12 @@ function createFn(ops) {
 
 function toCartoShader(ruleset) {
   var shaderAttrs = {};
+  
+  shaderAttrs = { 
+    'line-width': [ 'if(((1 << ctx.zoom))){_value = 1;}' ],
+    'line-color': [ 'if(((1 << ctx.zoom))){_value = \'#ff0000\';}' ],
+    'point-color': [ 'if(((1 << ctx.zoom))){_value = \'#ff0000\';}' ] 
+  }; 
   shaderAttrs = ruleset.rules[0].toJS();
   try {
     for(var attr in shaderAttrs) {
@@ -97,7 +104,6 @@ var compile = function(style, callback) {
   };
 
   var parser = new carto.Parser(parse_env);
-
   var ruleset = parser.parse(style);
   if(ruleset) {
       var shader = toCartoShader(ruleset);

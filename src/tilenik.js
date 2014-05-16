@@ -3,13 +3,13 @@ var Tilenik = function(){
   this.shader = require('./shader'),  
   this.renderer = require('./renderer'),
   this.projector = require('./projector');
+
 };
 
 Tilenik.prototype.render = function( canvas, geojson, css, z, x, y, callback ){
   var self = this;
 
   this.carto.compile( css, function( shaderData ){
-
     var shader = new self.shader( shaderData );
     var projected = [];
 
@@ -34,6 +34,7 @@ Tilenik.prototype.render = function( canvas, geojson, css, z, x, y, callback ){
     var ctx = canvas.getContext('2d');
     self.renderer.render(ctx, projected, shader, function( ){
       callback( canvas.toDataURL() );  
+      //canvas.toBuffer(function(e, buf){});
     });
 
   });
